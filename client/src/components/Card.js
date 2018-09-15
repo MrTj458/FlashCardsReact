@@ -7,7 +7,7 @@ class Card extends React.Component {
       return (
         <React.Fragment>
           <span className="card-title">Answer</span>
-          <p>answer</p>
+          <p>{this.props.answer}</p>
         </React.Fragment>
       )
     }
