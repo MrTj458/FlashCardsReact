@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import CardForm from './components/CardForm'
 import CardList from './components/CardList'
 
