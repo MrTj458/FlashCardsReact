@@ -10,11 +10,12 @@ const Card = ({ id, question, answer, updateCard, deleteCard }) => (
     <div className="col s12 m6">
       <div className="card blue-grey darken-1">
         <div className="card-content white-text">
+          <span class="card-title">Question</span>
           <p>{question}</p>
         </div>
         <div className="card-action">
           <div style={styles.margin} className="btn waves-effect">
-            Flip
+            Reveal Answer
           </div>
           <div className="btn red waves-effect" onClick={() => deleteCard(id)}>
             Delete
