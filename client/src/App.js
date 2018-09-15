@@ -29,7 +29,17 @@ class App extends React.Component {
   }
 
   updateCard = (id) => {
-
+    fetch(`/api/cards/${id}`, { method: 'PUT' })
+      .then(res => res.json())
+      .then(card => {
+        const cards = this.state.cards.map(c => {
+          if(c.id === id) {
+            return card
+          }
+          return c
+        })
+        this.setState({ cards })
+      })
   }
 
   deleteCard = (id) => {
