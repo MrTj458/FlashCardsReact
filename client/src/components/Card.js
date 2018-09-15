@@ -24,10 +24,15 @@ class Card extends React.Component {
               {this.shouldShow()}
             </div>
             <div className="card-action">
-              <div onClick={() => this.props.updateCard(this.props.id)} style={styles.margin} className="btn waves-effect">
+              <div style={styles.margin}
+                onClick={() => this.props.updateCard(this.props.id)}
+                className="btn waves-effect"
+              >
                 Reveal Answer
               </div>
-              <div className="btn red waves-effect" onClick={() => this.props.deleteCard(this.props.id)}>
+              <div className="btn red waves-effect"
+                onClick={() => this.props.deleteCard(this.props.id)}
+              >
                 Delete
               </div>
             </div>
