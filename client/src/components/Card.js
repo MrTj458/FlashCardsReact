@@ -1,9 +1,16 @@
 import React from 'react'
 
 class Card extends React.Component {
+  state = {
+    show: false
+  }
+
+  swapShow = () => {
+    this.setState({ show: !this.state.show })
+  }
 
   shouldShow = () => {
-    if(this.props.show) {
+    if(this.state.show) {
       return (
         <React.Fragment>
           <span className="card-title">Answer</span>
@@ -25,7 +32,7 @@ class Card extends React.Component {
             </div>
             <div className="card-action">
               <div style={styles.margin}
-                onClick={() => this.props.updateCard(this.props.id)}
+                onClick={this.swapShow}
                 className="btn waves-effect"
               >
                 Reveal Answer
