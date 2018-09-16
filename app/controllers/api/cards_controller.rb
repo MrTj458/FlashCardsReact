@@ -15,8 +15,11 @@ class Api::CardsController < ApplicationController
 
   def update
     card = Card.find(params[:id])
-    card.update(show: !card.show)
-    render json: card
+    if card.update(card_params)
+      render json: card
+    else
+      render json: { errors: card.errors }, status: 400
+    end
   end
 
   def destroy

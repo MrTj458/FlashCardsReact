@@ -2,19 +2,100 @@ import React from 'react'
 
 class Card extends React.Component {
   state = {
-    show: false
+    id: this.props.id,
+    question: this.props.question,
+    answer: this.props.answer,
+    showQuestion: true,
+    showAnswer: false,
+    editing: false
   }
 
-  swapShow = () => {
-    this.setState({ show: !this.state.show })
+  swapShowQuestion = () => {
+    this.setState({ showQuestion: !this.state.showQuestion })
   }
 
-  shouldShow = () => {
-    if(this.state.show) {
+  shouldShowQuestion = () => {
+    if(this.state.showQuestion) {
+      return (
+        <React.Fragment>
+          <span className="card-title">Question</span>
+          <p>{this.state.question}</p>
+        </React.Fragment>
+      )
+    }
+  }
+
+  swapShowAnswer = () => {
+    this.setState({ showAnswer: !this.state.showAnswer })
+  }
+
+  shouldShowAnswer = () => {
+    if(this.state.showAnswer) {
       return (
         <React.Fragment>
           <span className="card-title">Answer</span>
-          <p>{this.props.answer}</p>
+          <p>{this.state.answer}</p>
+        </React.Fragment>
+      )
+    }
+  }
+
+  swapEditing = () => {
+    if(this.state.editing) {
+      this.setState({ editing: false, showQuestion: true})
+    } else {
+      this.setState({
+        editing: true,
+        showQuestion: false,
+        showAnswer: false
+      })
+    }
+  }
+
+  handleChange = (e) => {
+    if(e.target.name === 'question') {
+      this.setState({question: e.target.value})
+    }
+
+    if(e.target.name === 'answer') {
+      this.setState({answer: e.target.value})
+    }
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const { id, question, answer } = this.state
+    this.props.updateCard(id, question, answer)
+    this.swapEditing()
+    this.swapShowAnswer()
+  }
+
+  shouldShowEditing = () => {
+    if(this.state.editing) {
+      return (
+        <React.Fragment>
+          <form onSubmit={this.handleSubmit} >
+            <span className="card-title">Question</span>
+            <input
+              className="white-text"
+              name="question"
+              placeholder="Question"
+              value={this.state.question}
+              onChange={this.handleChange}
+            />
+            <span className="card-title">Answer</span>
+            <input
+              className="white-text"
+              name="answer"
+              placeholder="Answer"
+              value={this.state.answer}
+              onChange={this.handleChange}
+            />
+            <input
+              type="submit"
+              className="btn"
+            />
+          </form>
         </React.Fragment>
       )
     }
@@ -26,16 +107,22 @@ class Card extends React.Component {
         <div className="col s12 m6">
           <div className="card blue-grey darken-1">
             <div className="card-content white-text">
-              <span className="card-title">Question</span>
-              <p>{this.props.question}</p>
-              {this.shouldShow()}
+              {this.shouldShowEditing()}
+              {this.shouldShowQuestion()}
+              {this.shouldShowAnswer()}
             </div>
             <div className="card-action">
               <div style={styles.margin}
-                onClick={this.swapShow}
+                onClick={this.swapShowAnswer}
                 className="btn waves-effect"
               >
                 Reveal Answer
+              </div>
+              <div style={styles.margin}
+                className="btn waves-effect"
+                onClick={this.swapEditing}
+              >
+                Edit
               </div>
               <div className="btn red waves-effect"
                 onClick={() => this.props.deleteCard(this.props.id)}

@@ -27,9 +27,16 @@ class App extends React.Component {
       })
   }
 
-  updateCard = (id) => {
-    fetch(`/api/cards/${id}`, { method: 'PUT' })
-      .then(res => res.json())
+  updateCard = (id, question, answer) => {
+    const updatedCard = {id, question, answer}
+    fetch(`/api/cards/${id}`, { 
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(updatedCard)
+    }).then(res => res.json())
       .then(card => {
         const cards = this.state.cards.map(c => {
           if(c.id === id) {
@@ -37,7 +44,7 @@ class App extends React.Component {
           }
           return c
         })
-        this.setState({ cards })
+        this.setState({cards})
       })
   }
 
