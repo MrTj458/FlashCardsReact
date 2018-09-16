@@ -75,7 +75,7 @@ class Card extends React.Component {
       return (
         <React.Fragment>
           <form onSubmit={this.handleSubmit} >
-            <span className="card-title">Question</span>
+            <span className="card-title">Question:</span>
             <input
               className="white-text"
               name="question"
@@ -83,7 +83,7 @@ class Card extends React.Component {
               value={this.state.question}
               onChange={this.handleChange}
             />
-            <span className="card-title">Answer</span>
+            <span className="card-title">Answer:</span>
             <input
               className="white-text"
               name="answer"
