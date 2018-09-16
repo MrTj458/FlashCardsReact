@@ -26,7 +26,7 @@ class Card extends React.Component {
   }
 
   swapShowAnswer = () => {
-    this.setState({ showAnswer: !this.state.showAnswer })
+    this.setState({ showAnswer: !this.state.showAnswer, showQuestion: true, editing: false })
   }
 
   shouldShowAnswer = () => {
