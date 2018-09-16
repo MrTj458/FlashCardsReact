@@ -18,7 +18,7 @@ class Card extends React.Component {
     if(this.state.showQuestion) {
       return (
         <React.Fragment>
-          <span className="card-title">Question</span>
+          <span className="card-title">Question:</span>
           <p>{this.state.question}</p>
         </React.Fragment>
       )
@@ -33,7 +33,7 @@ class Card extends React.Component {
     if(this.state.showAnswer) {
       return (
         <React.Fragment>
-          <span className="card-title">Answer</span>
+          <span className="card-title">Answer:</span>
           <p>{this.state.answer}</p>
         </React.Fragment>
       )
@@ -117,7 +117,7 @@ class Card extends React.Component {
                 onClick={this.swapShowAnswer}
                 className="btn waves-effect"
               >
-                Reveal Answer
+                {this.state.showAnswer ? 'Hide Answer' : 'Show Answer'}
               </div>
               <div style={styles.margin}
                 className="btn waves-effect"
