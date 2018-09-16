@@ -93,6 +93,7 @@ class Card extends React.Component {
             />
             <input
               type="submit"
+              value="Save"
               className="btn"
             />
           </form>

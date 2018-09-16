@@ -39,6 +39,7 @@ class TodoForm extends React.Component {
         <input
           type='submit'
           className="btn"
+          value="Create New Card"
         />
       </form>
     )
